@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_horizontal_margin">20dp</dimen>
+    <dimen name="categories_spacing">15dp</dimen>
+    <dimen name="cover_radius">8dp</dimen>
+
+    <dimen name="course_height">228dp</dimen>
+    <dimen name="course_width">152dp</dimen>
+    <dimen name="series_item_height">172dp</dimen>
+    <dimen name="series_item_width">320dp</dimen>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.mureed.app.data.model.Channel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/screen_horizontal_margin"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/channel_icon"
+            app:circleImageUrl="@{item.iconAsset.thumbnailUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_horizontal_margin"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="@dimen/screen_horizontal_margin"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@{item.title}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon" />
+
+        <TextView
+            android:id="@+id/episodesCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_horizontal_margin"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="@dimen/screen_horizontal_margin"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/subheading_color"
+            android:textSize="16sp"
+            app:episodesCount="@{item}"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:itemView="@{item.series != null &amp;&amp; item.series.size()>0 ? @layout/item_series : @layout/item_media}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/episodesCount"
+            app:recyclerViewItems="@{item.series != null &amp;&amp; item.series.size()>0 ? item.series : item.latestMedia}" />
+
+        <View
+            android:id="@+id/newEpisodesDivider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/screen_horizontal_margin"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="@dimen/screen_horizontal_margin"
+            android:background="@color/divider_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
